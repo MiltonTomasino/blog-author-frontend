@@ -7,5 +7,22 @@
 </head>
 <body>
     <h1>Home page</h1>
+
+    <ul>
+        <% if (blogs && blogs.length) { %>
+            <% blogs.forEach(blog => { %>
+                <li><strong><%= blog.title %></strong>: <%= blog.content %></li>
+                <% if (blog.comments.length > 0) { %>
+                    <ul>
+                        <% blog.comments.forEach(comment => { %>
+                            <li><em><%= comment.user.username %>:</em> <%= comment.text %></li>
+                        <% }) %>
+                    </ul>
+                <% } %>
+            <% }) %>
+        <% } else { %>
+            <li>No blogs available.</li>
+        <% } %>
+
 </body>
 </html>
