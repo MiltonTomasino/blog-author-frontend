@@ -3,22 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/javascript/javascript.js" defer></script>
     <title><%= title %></title>
 </head>
 <body>
     <h1>Home page</h1>
 
-    <ul>
+    <ul class="blogs-list">
         <% if (blogs && blogs.length) { %>
             <% blogs.forEach(blog => { %>
-                <li><strong><%= blog.title %></strong>: <%= blog.content %></li>
-                <% if (blog.comments.length > 0) { %>
-                    <ul>
-                        <% blog.comments.forEach(comment => { %>
-                            <li><em><%= comment.user.username %>:</em> <%= comment.text %></li>
-                        <% }) %>
-                    </ul>
-                <% } %>
+                <li class="blog">
+                    <div class="blog-content">
+                        <div class="info">
+                            <strong><%= blog.title %></strong><small> <%= blog.formattedDate %></small>
+                        </div>
+                        <div class="text"><%= blog.content %></div>
+                    </div>
+                    <div class="comments">
+                        <div class="comments-tab">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="tab-closed" viewBox="0 0 24 24">
+                                <title>chevron-down</title><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="tab-open" viewBox="0 0 24 24">
+                                <title>chevron-right</title><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+                            </svg>
+                        </div>
+                        <div class="comments-container">
+                            <% if (blog.comments.length > 0) { %>
+                            
+                                <% blog.comments.forEach(comment => { %>
+                                    <div><em><%= comment.user.username %>:</em> <%= comment.text %></div>
+                                <% }) %>
+                            
+                            <% } %>
+                        </div>
+                    </div>
+                </li>
             <% }) %>
         <% } else { %>
             <li>No blogs available.</li>
