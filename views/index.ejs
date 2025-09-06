@@ -33,7 +33,7 @@
                             <% if (blog.comments.length > 0) { %>
                             
                                 <% blog.comments.forEach(comment => { %>
-                                    <div><em><%= comment.user.username %>:</em> <%= comment.text %></div>
+                                    <div class="comment"><em><%= comment.user.username %>:</em> <%= comment.text %></div>
                                 <% }) %>
                             
                             <% } %>

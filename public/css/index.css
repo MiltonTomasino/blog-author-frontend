@@ -17,7 +17,7 @@ ul {
 
 .blog {
     margin-top: 50px;
-    outline: 1px solid blue;
+    /* outline: 1px solid blue; */
     padding: 30px;
     display: grid;
     grid-template-columns: auto;
@@ -29,8 +29,7 @@ ul {
 
 .blog > .blog-content,
 .blog > .comments {
-    outline: 1px solid green;
-    padding: 20px;
+    /* outline: 1px solid green; */
 }
 
 .blog-content {
@@ -39,8 +38,15 @@ ul {
     grid-template-rows: 50px minmax(100px, auto);
 }
 
-.blog-content div {
-    outline: 1px solid orange;
+.info {
+    border: 1px solid rgb(204, 204, 204);
+}
+
+.text {
+    border-left: 1px solid rgb(204, 204, 204);
+    border-right: 1px solid rgb(204, 204, 204);
+    border-top: none;
+    border-bottom: 1px solid rgb(204, 204, 204);
 }
 
 .info {
@@ -56,13 +62,29 @@ ul {
     padding: 10px;
 }
 
+
+.comments-tab {
+    /* border-radius: 10px; */
+    border: 1px solid rgb(204, 204, 204);
+    cursor: pointer;
+    background-color: rgb(242, 242, 242);
+}
+
+.comments-container {
+    padding-left: 20px;
+    border: 1px solid rgb(204, 204, 204);
+    border-top: none;
+
+    height: 250px;
+    overflow: scroll;
+}
+
 .down-arrow {
     width: 30px;
     height: 30px;
 }
 
 .tab-open, .tab-closed {
-    outline: 1px solid purple;
     height: 50px;
     cursor: pointer;
 }

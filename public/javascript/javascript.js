@@ -1,26 +1,26 @@
 const tabOpen = document.querySelector(".tab-open");
 const tabClose = document.querySelector(".tab-close");
 const commentsContsainer = document.querySelector(".comments-container");
+const commentsTab = document.querySelector(".comments-tab");
 
 commentsContsainer.style.display = "none";
 
-document.querySelectorAll(".comments-tab").forEach(tab => {
-    const open = tab.querySelector(".tab-open");
-    const close = tab.querySelector(".tab-closed");
+document.querySelectorAll(".blog").forEach(blog => {
+    const open = blog.querySelector(".tab-open");
+    const close = blog.querySelector(".tab-closed");
+    const commentsTab = blog.querySelector(".comments-tab");
+    const commentsContsainer = blog.querySelector(".comments-container");
 
     close.style.display = "none";
+    commentsContsainer.style.display = "none";
+    open.style.display = "inline";
 
-    open.addEventListener("click", () => {
-        open.style.display = "none";
-        close.style.display = "block";
-        console.log("opened");
-        commentsContsainer.style.display = "block";
-    });
+    let isOpen = false;
 
-    close.addEventListener("click", () => {
-        close.style.display = "none";
-        open.style.display = "block";
-        console.log("closed");
-        commentsContsainer.style.display = "none";
-    });
+    commentsTab.addEventListener("click", () => {
+        isOpen = !isOpen;
+        commentsContsainer.style.display = isOpen ? "block" : "none";
+        open.style.display = isOpen ? "none" : "inline";
+        close.style.display = isOpen ? "inline" : "none";
+    })
 });
