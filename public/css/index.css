@@ -58,6 +58,13 @@ ul {
     font-size: 1.3rem;
 }
 
+.info > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
 .text {
     padding: 10px;
 }
@@ -95,4 +102,22 @@ ul {
 
 .tab-closed {
     display: none;
+}
+
+/* modal */
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    height: 300px;
+    width: 400px;
+    padding: 30px;
+}
+
+.modal > form {
+    display: flex;
+    flex-direction: column;
 }
