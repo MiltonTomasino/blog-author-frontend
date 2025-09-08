@@ -1,3 +1,3 @@
-module.exports.loginPage = (req, res) => {
+module.exports.loginPage = async (req, res) => {
     res.render('login', { title: 'Login' });
 }

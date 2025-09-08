@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/index.css">
+    <script src="/javascript/blog.js"></script>
     <script src="/javascript/javascript.js" defer></script>
     <title><%= title %></title>
 </head>
-<body>
+<body class="hidden">
     <h1>Home page</h1>
     <form action="http://localhost:3000/user/logout" method="POST">
         <button>log out</button>
@@ -26,45 +27,7 @@
     </dialog>
 
     <ul class="blogs-list">
-        <% if (blogs && blogs.length) { %>
-            <% blogs.forEach(blog => { %>
-                <li class="blog">
-                    <div class="blog-content">
-                        <div class="info">
-                            <strong><%= blog.title %></strong>
-                            <span>
-                                <small> <%= blog.formattedDate %></small>
-                                <form action="http://localhost:3000/blog/<%= blog.id %>?_method=DELETE" method="POST">
-                                    <button type="submit" class="delete-btn">Delete</button>
-                                </form>
-                            </span>
-                        </div>
-                        <div class="text"><%= blog.content %></div>
-                    </div>
-                    <div class="comments">
-                        <div class="comments-tab">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="tab-closed" viewBox="0 0 24 24">
-                                <title>chevron-down</title><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="tab-open" viewBox="0 0 24 24">
-                                <title>chevron-right</title><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-                            </svg>
-                        </div>
-                        <div class="comments-container">
-                            <% if (blog.comments.length > 0) { %>
-                            
-                                <% blog.comments.forEach(comment => { %>
-                                    <div class="comment"><em><%= comment.user.username %>:</em> <%= comment.text %></div>
-                                <% }) %>
-                            
-                            <% } %>
-                        </div>
-                    </div>
-                </li>
-            <% }) %>
-        <% } else { %>
-            <li>No blogs available.</li>
-        <% } %>
-
+        
+    </ul>
 </body>
 </html>
