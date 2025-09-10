@@ -54,7 +54,8 @@ function renderBlogs(blogs) {
         const li = document.createElement("li");
         li.classList.add("blog")
 
-        li.innerHTML = `<li class="blog">
+        li.innerHTML = `
+                <li class="blog">
                     <div class="blog-content">
                         <div class="info">
                             <strong>${blog.title}</strong>
@@ -114,4 +115,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const formattedBlogs = formattedBlogDates(blogs);
     renderBlogs(formattedBlogs);
     commentToggles();
+
+    console.log("AuthCheck: ", authCheck);
+    
+    const userIdInput = document.querySelector("#userId");
+    if (userIdInput) {
+        userIdInput.value = authCheck.user.id;
+    };
 })
