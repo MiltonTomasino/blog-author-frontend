@@ -79,8 +79,13 @@ function renderBlogs(blogs, userId) {
                     <div class="comments-container">
                         <div class="comments-list">
                             ${blog.comments && blog.comments.length > 0
-                                ? blog.comments.map(comment => `<div class="comment">${comment.user.username}: <em>${comment.text}</em></div>`).join("")
-                                : ""
+                                ? blog.comments.map(comment => `<div class="comment">${comment.user.username}: <em>${comment.text}</em>
+                                                                    <form action="http://localhost:3000/blog/comment/${comment.id}?_method=DELETE" method="POST">
+                                                                        <button type="submit">delete</button>
+                                                                    </form>
+                                                                </div>
+                                    `).join("")
+                                : "No comments"
                             }
                         </div>
                         <div class="add-comment">

@@ -92,6 +92,9 @@ ul {
 
 .comment {
     padding-left: 20px;
+    display: flex;
+
+    gap: 10px;
 }
 .comments-list {
     /* border: 1px solid blue; */
