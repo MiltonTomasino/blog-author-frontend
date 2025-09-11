@@ -73,7 +73,6 @@ ul {
     padding: 10px;
 }
 
-
 .comments-tab {
     /* border-radius: 10px; */
     border: 1px solid rgb(204, 204, 204);
@@ -82,14 +81,55 @@ ul {
 }
 
 .comments-container {
-    padding-left: 20px;
     border: 1px solid rgb(204, 204, 204);
     border-top: none;
 
-    height: 250px;
-    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+
+    min-height: 400px;
 }
 
+.comment {
+    padding-left: 20px;
+}
+.comments-list {
+    /* border: 1px solid blue; */
+    /* flex: 1;
+    overflow-y: auto; */
+    height: 350px;
+    
+}
+
+.add-comment {
+    /* border: 1px solid red; */
+    padding: 5px;
+    flex-shrink: 0;
+}
+
+.add-comment input {
+    width: 80%;
+    height: 25px;
+
+    padding: 5px;
+}
+
+.add-comment  button {
+    height: 35px;
+    width: 17%;
+
+    background-color: rgb(5, 197, 5);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-comment  button:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid gray;
+}
 .down-arrow {
     width: 30px;
     height: 30px;
@@ -98,10 +138,6 @@ ul {
 .tab-open, .tab-closed {
     height: 50px;
     cursor: pointer;
-}
-
-.tab-open {
-
 }
 
 .tab-closed {

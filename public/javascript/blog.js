@@ -40,7 +40,7 @@ function commentToggles() {
     });
 }
 
-function renderBlogs(blogs) {
+function renderBlogs(blogs, userId) {
 
     const blogList = document.querySelector(".blogs-list");
     blogList.innerHTML = "";
@@ -55,36 +55,43 @@ function renderBlogs(blogs) {
         li.classList.add("blog")
 
         li.innerHTML = `
-                <li class="blog">
-                    <div class="blog-content">
-                        <div class="info">
-                            <strong>${blog.title}</strong>
-                            <span>
-                                <small> ${blog.formattedDate}</small>
-                                <form action="http://localhost:3000/blog/${blog.id}?_method=DELETE" method="POST">
-                                    <button type="submit" class="delete-btn">Delete</button>
-                                </form>
-                            </span>
-                        </div>
-                        <div class="text">${blog.content}</div>
+                <div class="blog-content">
+                    <div class="info">
+                        <strong>${blog.title}</strong>
+                        <span>
+                            <small> ${blog.formattedDate}</small>
+                            <form action="http://localhost:3000/blog/${blog.id}?_method=DELETE" method="POST">
+                                <button type="submit" class="delete-btn">Delete</button>
+                            </form>
+                        </span>
                     </div>
-                    <div class="comments">
-                        <div class="comments-tab">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="tab-closed" viewBox="0 0 24 24">
-                                <title>chevron-down</title><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="tab-open" viewBox="0 0 24 24">
-                                <title>chevron-right</title><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-                            </svg>
-                        </div>
-                        <div class="comments-container">
+                    <div class="text">${blog.content}</div>
+                </div>
+                <div class="comments">
+                    <div class="comments-tab">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="tab-closed" viewBox="0 0 24 24">
+                            <title>chevron-down</title><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="tab-open" viewBox="0 0 24 24">
+                            <title>chevron-right</title><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+                        </svg>
+                    </div>
+                    <div class="comments-container">
+                        <div class="comments-list">
                             ${blog.comments && blog.comments.length > 0
                                 ? blog.comments.map(comment => `<div class="comment">${comment.user.username}: <em>${comment.text}</em></div>`).join("")
                                 : ""
                             }
                         </div>
+                        <div class="add-comment">
+                            <form action="http://localhost:3000/blog/${blog.id}/comments" method="POST">
+                                
+                                <input type="text" name="comment" placeholder="Add a comment..." />
+                                <label for="comment"><button type="submit">comment</button></label>
+                            </form>
+                        </div>
                     </div>
-                </li>`
+                </div>`
         blogList.appendChild(li);
     });
 }
@@ -113,7 +120,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     body.classList.remove("hidden");
 
     const formattedBlogs = formattedBlogDates(blogs);
-    renderBlogs(formattedBlogs);
+    renderBlogs(formattedBlogs, authCheck.user.id);
     commentToggles();
 
     console.log("AuthCheck: ", authCheck);
