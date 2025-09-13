@@ -71,7 +71,10 @@ function renderPagination(currentPage, totalPages, userId) {
     const createPageBtn = (page) => {
         const btn = document.createElement("button");
         btn.textContent = page;
-        if (page === currentPage) btn.disabled = true;
+        if (page === currentPage) {
+            btn.disabled = true
+            btn.style.backgroundColor = "rgb(60, 86, 150)"
+        };
         btn.onclick = () => loadBlogs(page, userId);
         return btn
     }
