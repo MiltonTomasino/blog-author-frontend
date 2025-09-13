@@ -9,11 +9,15 @@
     <title><%= title %></title>
 </head>
 <body class="hidden">
-    <h1>Home page</h1>
-    <form action="http://localhost:3000/user/logout" method="POST">
-        <button>log out</button>
-    </form>
-    <button class="show-modal">Create new blog</button>
+    <nav>
+        <h1>Milton's Blog</h1>
+        <div class="nav-buttons">
+            <form action="http://localhost:3000/user/logout" method="POST">
+                <button>log out</button>
+            </form>
+            <button class="show-modal">Create new blog</button>
+        </div>
+    </nav>
     <dialog class="modal">
         <form action="http://localhost:3000/blog" method="POST">
             <label for="title">Title:</label>

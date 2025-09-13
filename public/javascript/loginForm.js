@@ -1,6 +1,10 @@
 const loginForm = document.querySelector(".login-form");
+const error = document.querySelector(".info.error");
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+    error.innerHTML = "";
+
     try {
         const authCheck = await fetch("http://localhost:3000/user/check", {
             method: "GET",
@@ -37,13 +41,12 @@ loginForm.addEventListener("submit", async (e) => {
         });
 
         const data = await res.json();
-
+        console.log("Data: ",data);
+        
         if (res.ok) {
-            alert("Login successful!");
-            
             window.location.href = "/";
         } else {
-            alert(data.error || "Login failed");
+            error.innerHTML = `<em>Error: ${data.error}.</em><em>Make sure you are an author.</em>`
         }
 
     } catch (error) {

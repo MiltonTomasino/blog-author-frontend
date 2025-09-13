@@ -4,6 +4,10 @@
     line-height: 1.5;
 }
 
+body {
+    padding-top: 80px;
+}
+
 .hidden {
     display: none;
 }
@@ -16,7 +20,6 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
-    outline: 1px solid red;
 }
 
 .blog {
@@ -42,10 +45,6 @@ ul {
     grid-template-rows: 50px minmax(100px, auto);
 }
 
-.info {
-    border: 1px solid rgb(204, 204, 204);
-}
-
 .text {
     border-left: 1px solid rgb(204, 204, 204);
     border-right: 1px solid rgb(204, 204, 204);
@@ -60,6 +59,10 @@ ul {
     padding-left: 25px;
     padding-right: 25px;
     font-size: 1.3rem;
+
+    border: 1px solid rgb(204, 204, 204);
+    background-color: rgb(32, 44, 75);
+    color: white;
 }
 
 .info > span {
@@ -96,10 +99,18 @@ ul {
 
     gap: 10px;
 }
+
+.no-comments {
+    align-self: center;
+}
+
 .comments-list {
     /* border: 1px solid blue; */
     /* flex: 1;
     overflow-y: auto; */
+    display: flex;
+    flex-direction: column;
+
     height: 350px;
     
 }
@@ -155,12 +166,59 @@ ul {
     left: 50%;
     transform: translate(-50%, -50%);
 
-    height: 300px;
-    width: 400px;
+    height: 350px;
+    width: 450px;
     padding: 30px;
 }
 
 .modal > form {
     display: flex;
     flex-direction: column;
+}
+
+.modal > form textarea {
+    height: 200px;
+}
+
+/* Nav bar */
+
+nav {
+    border: 1px solid black;
+    position: fixed;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    top: 0;
+    left: 0;
+
+    height: 80px;
+    width: 100%;
+
+    background-color: rgb(32, 44, 75);
+}
+
+nav h1 {
+    color: white;
+    margin-left: 30px;
+}
+
+nav button {
+    border: none;
+    background-color: rgb(32, 44, 75);
+    color: white;
+    padding: 25px;
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+nav button:hover {
+    background-color: rgb(60, 86, 150);
+
+}
+
+.nav-buttons {
+    display: flex;
 }

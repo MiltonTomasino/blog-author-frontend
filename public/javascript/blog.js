@@ -4,6 +4,7 @@ function formattedBlogDates(blogs) {
         const now = new Date();
         const diffMs = now - createdAt;
         const diffHrs = diffMs / (1000 * 60 * 60);
+        const diffMins = diffMs /(1000 * 60);
         let formattedDate;
         if (diffHrs > 24) {
             formattedDate = createdAt.toLocaleString("en-us", {
@@ -11,6 +12,8 @@ function formattedBlogDates(blogs) {
                 month: "numeric",
                 day: "numeric",
             });
+        } else if (diffHrs > 0 && diffHrs < 1){
+            formattedDate = `${Math.floor(diffMins)}m`
         } else {
             formattedDate = `${Math.floor(diffHrs)}h`;
         }
@@ -85,7 +88,7 @@ function renderBlogs(blogs, userId) {
                                                                     </form>
                                                                 </div>
                                     `).join("")
-                                : "No comments"
+                                : `<div class="no-comments">No comments.</div>`
                             }
                         </div>
                         <div class="add-comment">
