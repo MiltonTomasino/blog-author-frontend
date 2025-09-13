@@ -64,7 +64,7 @@ function renderBlogs(blogs, userId) {
                         <span>
                             <small> ${blog.formattedDate}</small>
                             <form action="http://localhost:3000/blog/${blog.id}?_method=DELETE" method="POST">
-                                <button type="submit" class="delete-btn">Delete</button>
+                                <button type="submit" class="delete-btn">Delete Blog</button>
                             </form>
                         </span>
                     </div>
