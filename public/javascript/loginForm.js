@@ -29,7 +29,7 @@ loginForm.addEventListener("submit", async (e) => {
 
     const username = loginForm.username.value;
     const password = loginForm.password.value;
-    console.log(username, password);
+    // console.log(username, password);
     
 
     try {
@@ -41,7 +41,7 @@ loginForm.addEventListener("submit", async (e) => {
         });
 
         const data = await res.json();
-        console.log("Data: ",data);
+        // console.log("Data: ",data);
         
         if (res.ok) {
             window.location.href = "/";

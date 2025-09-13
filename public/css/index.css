@@ -6,6 +6,9 @@
 
 body {
     padding-top: 80px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
 }
 
 .hidden {
@@ -32,11 +35,6 @@ ul {
     gap: 10px;
 
     width: 60%;
-}
-
-.blog > .blog-content,
-.blog > .comments {
-    /* outline: 1px solid green; */
 }
 
 .blog-content {
@@ -214,11 +212,31 @@ nav button {
     cursor: pointer;
 }
 
-nav button:hover {
+nav button:hover,
+.pagination button:hover {
     background-color: rgb(60, 86, 150);
 
 }
 
 .nav-buttons {
     display: flex;
+}
+
+/* Pagination buttons */
+
+
+.pagination {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.pagination button {
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(32, 44, 75);
+    color: white;
 }

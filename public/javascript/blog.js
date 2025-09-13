@@ -43,6 +43,69 @@ function commentToggles() {
     });
 }
 
+async function loadBlogs(page = 1, id) {
+    const blogs = await fetch(`http://localhost:3000/blog?page=${page}`, {
+        method: "GET",
+        credentials: 'include',
+    })
+    .then(res => res.json())
+    .catch(err => console.error("Error fetching blogs: ", err));
+
+    const formattedBlogs = formattedBlogDates(blogs.blogs);
+    renderBlogs(formattedBlogs, id);
+    renderPagination(blogs.currentPage, blogs.totalPages, id)
+    commentToggles();
+}
+
+function renderPagination(currentPage, totalPages, userId) {
+    const paginationDiv = document.querySelector(".pagination");
+    paginationDiv.innerHTML = "";
+
+    if (currentPage > 1) {
+        const prevBtn = document.createElement("button");
+        prevBtn.textContent = "Prev";
+        prevBtn.onclick = () => loadBlogs(currentPage - 1, userId);
+        paginationDiv.appendChild(prevBtn);
+    }
+
+    const createPageBtn = (page) => {
+        const btn = document.createElement("button");
+        btn.textContent = page;
+        if (page === currentPage) btn.disabled = true;
+        btn.onclick = () => loadBlogs(page, userId);
+        return btn
+    }
+
+    paginationDiv.appendChild(createPageBtn(1));
+
+    if (currentPage > 3) {
+        const dots = document.createElement("span");
+        dots.textContent = "...";
+        paginationDiv.appendChild(dots);
+    }
+
+    for (let i = Math.max(2, currentPage - 2); i <= Math.min(totalPages - 1, currentPage + 2); i++) {
+        paginationDiv.appendChild(createPageBtn(i));
+    }
+
+    if (currentPage < totalPages - 2) {
+        const dots = document.createElement("span");
+        dots.textContent = "...";
+        paginationDiv.appendChild(dots);
+    }
+
+    if (totalPages > 1) {
+        paginationDiv.appendChild(createPageBtn(totalPages));
+    }
+
+    if (currentPage < totalPages) {
+        const nextBtn = document.createElement("button");
+        nextBtn.textContent = "Next";
+        nextBtn.onclick = () => loadBlogs(currentPage + 1, userId);
+        paginationDiv.appendChild(nextBtn);
+    }
+}
+
 function renderBlogs(blogs, userId) {
 
     const blogList = document.querySelector(".blogs-list");
@@ -117,22 +180,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
     }
 
-    const blogs = await fetch("http://localhost:3000/blog", {
-        method: "GET",
-        credentials: 'include',
-    })
-    .then(res => res.json())
-    .catch(err => console.error("Error fetching blogs: ", err));
-
     const body = document.querySelector("body");
     body.classList.remove("hidden");
 
-    const formattedBlogs = formattedBlogDates(blogs);
-    renderBlogs(formattedBlogs, authCheck.user.id);
-    commentToggles();
+    // console.log("AuthCheck: ", authCheck);
+    loadBlogs(1, authCheck.user.id);
 
-    console.log("AuthCheck: ", authCheck);
-    
     const userIdInput = document.querySelector("#userId");
     if (userIdInput) {
         userIdInput.value = authCheck.user.id;
